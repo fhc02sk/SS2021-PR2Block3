@@ -16,10 +16,14 @@ public class FileInputStreamDemoApp {
         try {
             fileInputStream = new FileInputStream(file);
 
+            int countBytes = 0;
             int byteRead = 0;
             while ((byteRead = fileInputStream.read()) != -1){
                 System.out.print((char)byteRead);
+                countBytes++;
             }
+
+            System.out.println("\nAnzahl Bytes: " + countBytes);
         } catch (FileNotFoundException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -27,7 +31,8 @@ public class FileInputStreamDemoApp {
         }
         finally {
             try {
-                fileInputStream.close();
+                if (fileInputStream != null)
+                    fileInputStream.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
